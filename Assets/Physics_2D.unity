@@ -1580,11 +1580,11 @@ BuoyancyEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_SurfaceLevel: 0.4
-  m_Density: 4
+  m_Density: 1
   m_LinearDrag: 5
   m_AngularDrag: 5
-  m_FlowAngle: 0
-  m_FlowMagnitude: 0
+  m_FlowAngle: 45
+  m_FlowMagnitude: 100
   m_FlowVariation: 0
 --- !u!61 &1945536481
 BoxCollider2D:
