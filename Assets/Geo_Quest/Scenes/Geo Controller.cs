@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,12 +10,13 @@ public class GeoController : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody2D rb;
     public int speed = 3;
-    public string NextLevel = "Level 2";
+    public int thislevel;
     private Renderer playerRenderer;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerRenderer = GetComponent<Renderer>();
+        thislevel = SceneManager.GetActiveScene().buildIndex;
     }
     public void SetPlayerColor(Color newColor)
     {
@@ -51,13 +53,27 @@ public class GeoController : MonoBehaviour
         {
             case "Death":
                 {
-                    string thislevel = SceneManager.GetActiveScene().name;
                     SceneManager.LoadScene(thislevel);
                     break;
                 }
             case "Finish":
                 {
-                    SceneManager.LoadScene(NextLevel);
+                    SceneManager.LoadScene(thislevel +=1);
+                    break;
+                }
+            case "Secret":
+                {
+                    SceneManager.LoadScene("Level 4b");
+                    break;
+                }
+            case "Secret end":
+                {
+                    SceneManager.LoadScene("Level 4c");
+                    break;
+                }
+            case "Alt level end":
+                {
+                    SceneManager.LoadScene("Level 5");
                     break;
                 }
         }
