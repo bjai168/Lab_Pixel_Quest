@@ -12,8 +12,10 @@ public class GeoController : MonoBehaviour
     public int speed = 3;
     public int thislevel;
     private Renderer playerRenderer;
+    private SpriteRenderer spriteRenderer;
     void Start()
     {
+        spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         playerRenderer = GetComponent<Renderer>();
         thislevel = SceneManager.GetActiveScene().buildIndex;
@@ -30,9 +32,15 @@ public class GeoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        {
             float xInput = Input.GetAxis("Horizontal");
-            rb.velocity = new Vector2(xInput*speed, rb.velocity.y);
+            rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
+        if (xInput > 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (xInput < 0)
+        {
+            spriteRenderer.flipX = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
